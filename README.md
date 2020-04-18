@@ -6,7 +6,4 @@ Arguments:
 > CSV file
 
 Example:  
-```
-scrapingpy "http://www.some-url.com" output.csv
-```
-```
+>.\scraping_main.py "http://www.some-url.com" output.csv
