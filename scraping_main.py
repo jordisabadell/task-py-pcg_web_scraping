@@ -1,4 +1,5 @@
 from scraping_list import scrapingList
+from scraping_index import scrapingIndex
 import sys
 import os
 import codecs
@@ -20,8 +21,17 @@ if len(sys.argv)>=3:
 else:
     fileName = ""
 
+
+#scraping index
+urls = scrapingIndex(url)
+
 #scraping list
-sb = scrapingList(url, 0, 100) #url, currentIteration, maxIterations
+sb = ""
+for prefix in urls:
+    sb = sb + scrapingList(urls[prefix], prefix)
+
+#add header row
+sb = "Prefix-1\tPrefix-2\tId\tDescription\tLink\tDate update\n" + sb
 
 #print output result
 if fileName:

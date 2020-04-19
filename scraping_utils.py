@@ -31,6 +31,34 @@ def getUrlParams(url):
 
     return params
 
+# Returns domain of URL.
+#
+# @param url:string
+# @return string
+def getUrlDomain(url):
+
+    #no url
+    if not url:
+        return ""
+
+    #get url protocol like http, https, ...
+    protocol = url[0:url.find("://")+3]
+
+    #remove protocol
+    url = url.replace(protocol, "")
+
+    #remove params
+    url = url.split("?")[0] 
+
+    #url hasn't path
+    if url.rfind("/")<=0:
+        return protocol+url
+
+    #get domain
+    domain = url[0:url.find("/")]
+    
+    return protocol+domain
+
 
 # Get URL without filename and parameters.
 # For example:
@@ -81,3 +109,13 @@ def trim(s):
     s = s.replace('\n', '')
     s = s.strip()
     return s
+
+# Remove number of items text.
+#
+# @params s:string
+# @return string
+def removeNumberOfItems(s):
+    if not "(" in s:
+        return s
+    
+    return s[0:s.find("(")]
