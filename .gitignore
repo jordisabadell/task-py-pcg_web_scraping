@@ -130,5 +130,6 @@ dmypy.json
 
 # Custom
 /in
-.urls
+urls_to_scrape.json
+urls_to_scrape_TEST.json
 .csv

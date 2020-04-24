@@ -3,44 +3,42 @@ from index import scrapingIndex
 import sys
 import os
 import codecs
+import json
 
-#validate nº args
-if len(sys.argv)<2:
-    print("Insufficient number of arguments.")
-    exit()
+#configuration params
+#-----------
 
-#get arg1
-url = sys.argv[1]
-if not url or 'http' not in url:
-    print("Invald URL:", url)
-    exit()
+INPUT_FILE = "urls_to_scrape_TEST.json"
+CSV_HEADER = "Prefix-1\tPrefix-2\tId\tDescription\tLink\tDate update\n"
+OUTPUT_DIRECTORY = "c:/tmp/"
 
-#get arg2 (optional)
-if len(sys.argv)>=3:
-    fileName = sys.argv[2]
-else:
-    fileName = ""
+#!~end of configuration params
 
 
-#scraping index
-urls = scrapingIndex(url)
+#open configuration file and iterate urls
+items = json.load(open(INPUT_FILE, "r", encoding="utf8"))
+for item in items:
+    sb = ""
+    
+    #scraping index page from main url
+    urls = scrapingIndex(item["url"])
 
-#scraping list
-sb = ""
-for prefix in urls:
-    sb = sb + scrapingList(urls[prefix], prefix)
+    #scraping list of urls    
+    for prefix in urls:
+        sb = sb + scrapingList(urls[prefix], prefix)
 
-#add header row
-sb = "Prefix-1\tPrefix-2\tId\tDescription\tLink\tDate update\n" + sb
+    #add header row
+    sb = CSV_HEADER + sb
 
-#print output result
-if fileName:
-    #remove file
-    if os.path.exists(fileName):
-        os.remove(fileName)
-    #wirte
-    f = codecs.open(fileName, "a", "utf-8")
+    #remove file if exists
+    if os.path.exists(item["file"]):
+        os.remove(item["file"])
+    
+    #wirte output file
+    if not OUTPUT_DIRECTORY.endswith("/"):
+        outputFile = OUTPUT_DIRECTORY + "/" + item["file"]
+    else:  
+        outputFile = OUTPUT_DIRECTORY + item["file"]
+    f = codecs.open(outputFile, "a", "utf-8")
     f.write(sb)
     f.close()
-else: #output screen
-    print(sb)
