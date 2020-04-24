@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup #https://www.crummy.com/software/BeautifulSoup/bs4/doc/
-from scraping_utils import getUrlBase, getUrlParams, removeNumberOfItems, getUrlDomain, trim
+from utils import getUrlBase, getUrlParams, removeNumberOfItems, getUrlDomain, trim
 import requests
 
 # Scraping index page. Return list of URLs to scraping

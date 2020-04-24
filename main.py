@@ -1,5 +1,5 @@
-from scraping_list import scrapingList
-from scraping_index import scrapingIndex
+from list import scrapingList
+from index import scrapingIndex
 import sys
 import os
 import codecs
