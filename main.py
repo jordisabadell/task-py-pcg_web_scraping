@@ -9,8 +9,8 @@ import json
 #-----------
 
 INPUT_FILE = "urls_to_scrape_TEST.json"
-CSV_HEADER = "Prefix-1\tPrefix-2\tId\tDescription\tLink\tDate update\n"
 OUTPUT_DIRECTORY = "c:/tmp/"
+CSV_HEADER = "Prefix-1\tPrefix-2\tId\tDescription\tLink\tDate update\n"
 
 #!~end of configuration params
 
