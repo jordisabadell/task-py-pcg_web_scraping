@@ -1,6 +1,6 @@
 # Scraping PCG to CSV files
 
-Given a list of URLs of P.C.G web, it scrapes the content and save to CSV file. It needs a configuration JSON file.
+Given a list of URLs of P.C.G web, it scrapes the content and save it to CSV file/s. It needs a configuration JSON file with URLs and output file/s name.
 
 ## Arguments
 
@@ -12,7 +12,7 @@ Given a list of URLs of P.C.G web, it scrapes the content and save to CSV file. 
 
 ## Configuration JSON file
 
-** urls_to_scrape_EMTPY.json **
+See an empty file structure at **urls_to_scrape_EMTPY.json**.
 
 ```JSON
 [

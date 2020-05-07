@@ -10,7 +10,7 @@ from index import scrapingIndex
 CSV_HEADER = "Prefix-1\tPrefix-2\tId\tDescription\tLink\tDate update\n"
 
 #ARGUMENTS
-parser = argparse.ArgumentParser(description='Given a list of URLs of P.C.G web, it scrapes the content and save to CSV file. It needs a configuration JSON file.')
+parser = argparse.ArgumentParser(description='Given a list of URLs of P.C.G web, it scrapes the content and save it to CSV file/s. It needs a configuration JSON file with URLs and output file/s name.')
 parser.add_argument('--inputfile', dest='input_file', 
     help='Input file name with configuration (i.e: \'urls_to_scrape.json\').', type=str, required=True)
 parser.add_argument('--outputfolder', dest='output_folder', 
