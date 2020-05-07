@@ -1,22 +1,28 @@
-from list import scrapingList
-from index import scrapingIndex
 import sys
 import os
 import codecs
 import json
+import argparse
+from list import scrapingList
+from index import scrapingIndex
 
-#configuration params
-#-----------
-
-INPUT_FILE = "urls_to_scrape_TEST.json"
-OUTPUT_DIRECTORY = "c:/tmp/"
+#CONSTANTS
 CSV_HEADER = "Prefix-1\tPrefix-2\tId\tDescription\tLink\tDate update\n"
 
-#!~end of configuration params
+#ARGUMENTS
+parser = argparse.ArgumentParser(description='Given a list of URLs of P.C.G web, it scrapes the content and save to CSV file. It needs a configuration JSON file.')
+parser.add_argument('--inputfile', dest='input_file', 
+    help='Input file name with configuration (i.e: \'urls_to_scrape.json\').', type=str, required=True)
+parser.add_argument('--outputfolder', dest='output_folder', 
+    help='Output folder name (i.e: \'c:/tmp/\').', type=str, required=True)
 
+args = parser.parse_args()
+inputFileName = args.input_file
+outputFolderName = args.output_folder
 
+#EXECUTE
 #open configuration file and iterate urls
-items = json.load(open(INPUT_FILE, "r", encoding="utf8"))
+items = json.load(open(inputFileName, "r", encoding="utf8"))
 for item in items:
     sb = ""
     
@@ -35,10 +41,12 @@ for item in items:
         os.remove(item["file"])
     
     #wirte output file
-    if not OUTPUT_DIRECTORY.endswith("/"):
-        outputFile = OUTPUT_DIRECTORY + "/" + item["file"]
+    if not outputFolderName.endswith("/"):
+        outputFile = outputFolderName + "/" + item["file"]
     else:  
-        outputFile = OUTPUT_DIRECTORY + item["file"]
+        outputFile = outputFolderName + item["file"]
     f = codecs.open(outputFile, "a", "utf-8")
     f.write(sb)
     f.close()
+
+print("Done.")
