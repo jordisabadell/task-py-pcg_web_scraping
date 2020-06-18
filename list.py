@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup #https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+from content import scrapingContent
 from utils import getUrlBase, getUrlParams, removeNumberOfItems, getUrlDomain, trim, getUrlDomain
 import requests
 
@@ -38,6 +39,8 @@ def scrapingList(url, prefix):
                 id_ = getUrlParams(href)
 
                 sb = sb + prefix + "\t" + id_["idDoc"] + "\t" + title + "\t" + href
+
+                sb = sb + "\t" + scrapingContent(href)
             else: #dd
                 date = trim(content.getText())
                 if ":" in date: #Some text: 01/01/2020 00:00h
