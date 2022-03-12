@@ -26,3 +26,15 @@ See an empty file structure at **urls_to_scrape_EMTPY.json**.
     }
 ]
 ```
+## Dependencies
+
+```
+ pip install beautifulsoup4
+ pip install requests
+```
+
+## Run
+
+```
+py main.py --inputfile urls_to_scrape.json --outputfolder c:/Tmp
+```
